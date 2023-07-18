@@ -1,0 +1,67 @@
+{% extends "info/base.html" %}
+  <head>
+    {% block title %}
+    <title> Rules</title>
+    {% endblock title %}
+
+    <style>
+
+      .flex-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .flex-container > h1,
+      .flex-container > h2,
+      .flex-container > p {
+        text-align: center;
+      }
+
+      .flex-container > h2 {
+        margin-bottom: 10px; /* Adjust the margin-bottom value as desired */
+      }
+    </style>
+  </head>
+
+  {% block content%}
+    <div class="flex-container">
+      <h1>Rules !</h1>
+      <h2>Killer Game</h2>
+      <p>
+        <h3>Description:</h3>
+        Killer is a famous role-playing game. <br>
+        The aim is to be the last player still alive and kill as many players as possible.<br>
+        This application lets you organize a Killer with as many players as you like.<br>
+        This game can be played between friends, colleagues, leisure center organizers, etc.<br>
+        Once the game has started, you need to be on your guard 24 hours a day.<br>
+      
+        <h3> Features:</h3>
+        1. The game master fill out form for each player:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- pseudo<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- e-mail address<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- custom action (optional)<br>
+  
+        He/she also can propose Kill examples that will be randomly assigned to players.<br>
+        NB: The custom action is written in the sense that the player has to do it,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOT in the sense that he has to do it to be killed.<br>
+  
+        Example: the custom action for Alex is 'make him wear a hat'. The game will assign him a target.<br>
+        He will have to make his target wear a hat.
+        <br><br>
+        
+        2. Finally, each player will receive a mission order by Email:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-A target<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-A Kill<br><br>
+  
+        Once each player has received his mission order, the game can begin!<br>
+        
+        <h3> Attention:</h3>
+  
+        This game is purely a life-size role-playing game, and in no way alludes to any notion of violence,
+        degradation, or other negative facts.
+      </p>
+    </div>
+    {% endblock content %}

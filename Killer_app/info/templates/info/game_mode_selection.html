@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Mode Selection</title>
+    <style>
+    /* Add your custom CSS styles here */
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+    
+        .heading {
+            text-align: center;
+            color: #008CBA;
+            margin-bottom: 80px;
+        }
+        
+        .select-game-mode {
+            width: 400px;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        
+        .submit-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #008CBA; /* Blue */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.5em;
+        }
+        
+        .submit-button:hover {
+            background-color: #007B9A; /* Darker blue */
+        }
+
+        .button-spacing {
+            margin-top: 60px;
+          }
+
+
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1 class="heading">Choose a Game Mode</h1>
+        <form action="/select_game_mode/" method="POST">
+            {% csrf_token %}
+            <select name="game_mode",  class="select-game-mode">
+                <option value="French">French Mode</option>
+                <option value="English">English Mode</option>
+                <option value="vacation">Vacation Mode (coming soon)</option>
+                <option value="evening">Party Mode (coming soon)</option>
+                <option value="office">Office Mode (coming soon)</option>
+            </select>
+            <input class="submit-button button-spacing " type="submit" value="Launch the game">
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{% extends "info/base.html" %}
+
+{% block title %}
+<title>Congrats 🎉! </title>
+{% endblock title %}
+
+{% block content%}
+    <div class="flex-container">
+        <h1 class="green-header">E-mails successfully sent ! </h1>
+        <a href="{% url 'donate' %}" class="btn btn-spacing">Donate </a>
+    </div>
+ 
+
+{% endblock content %}
+

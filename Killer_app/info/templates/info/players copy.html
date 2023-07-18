@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Player Contact Form</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        html, body, nav {
+            width: 100%;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh; 
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+        h2 {
+            margin-bottom: 5px;
+            text-align: center;
+        }
+        .player-form {
+            position: relative; <!--just added -->
+            display: grid;
+            grid-gap: 5px;
+            grid-template-columns: 1fr;
+            grid-template-areas:
+                "surname-label"
+                "surname"
+                "player_email-label"
+                "player_email"
+                "player_email_error";
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 300px;
+        }
+        .player-form label {
+            display: block;
+        }
+        .player-form input { /* Update this selector to target all input elements */
+            width: 100%; /* Set the width to 100% for all input elements */
+            margin-bottom: 10px;
+        }
+        .big-brick {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #ccc;
+            padding: 20px;
+            width: 300px;
+        }
+        .add-player-button {
+            display: flex;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: green; /* Add this line */
+            color: white;
+        }
+        .submit-button {
+            width: 100%;
+            padding: 15px;
+            font-size: 24px;
+            margin-top: 10px;
+        }
+        input::placeholder { <!--useless for now--> 
+            color: gray;
+            font-style: italic;
+          }
+        .player-title {
+            margin-bottom: 5px;
+            text-align: center;
+            font-family: 'Press Start 2P', cursive; /* Example of a gaming-style font */
+            font-size: 1rem;
+            
+        }
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }     
+        .remove-player {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border: none;
+            border-radius: 50%; /* Makes the button round */
+            background-color: #FF7F7F; /* Gives the button a light red color */
+            color: white; /* Makes the text color white */
+            height: 30px; /* Adjust according to your design */
+            width: 30px; /* Make width and height equal to get a perfect circle */
+            text-align: center; /* Centers the 'x' in the button */
+            line-height: 18px; /* Aligns the 'x' vertically, this should be a little less than height for better alignment */
+            font-size: 12px; /* Adjust this as needed */
+            cursor: pointer;
+        }
+            
+        .navbar {
+            height: 80px;
+            padding: 0;
+            display: flex;  /* Add this line to make it a flexible box layout */
+            justify-content: center;  /* Add this line to align items horizontally in the center */
+            align-items: center;  /* Add this line to align items vertically in the center */
+            margin: 0;
+            background-color: yellow;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        .navbar li {
+            list-style-type: none;  /* Optional: Removes the bullet points before the list items */
+        }
+        .navbar li a {
+            padding: 14px 16px;   /* Increase padding to make links easier to click */
+            text-align: center;
+            text-decoration: none;
+            color: black;   /* Set text color to dark for better visibility on yellow background */
+            font-size: 1em;  /* Optional: Increase font size */
+        }
+        .navbar li a:hover {
+            background-color: #333;
+            color: white;   /* Set text color to white when hovered */
+        }
+        
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul class="navbar">
+            <li><a href="{% url 'info-form' %}">Game</a></li>
+            <li><a href="{% url 'rules' %}">Rules</a></li>
+            <li><a href="{% url 'donate' %}">Donate</a></li>
+        </ul>
+    </nav>
+    <h1>Welcome to the Killer game</h1>
+    <h2>Fill in player information</h2>
+    <p>NB : The custom action is written in the sense that the player has to do it,
+        <br>NOT in the sense that he has to do it to be killed.</p>
+    <form action="{% url 'info-form' %}" method="POST">
+        {% csrf_token %}
+        {{ formset.management_form }}
+        <div id="form_set">
+            {% for form in formset %}
+            <div class="player-form" data-player-number="{{ forloop.counter }}">
+                <h3 class="player-title">Player {{ forloop.counter }} </h3>
+                <button class="remove-player" >×</button>
+                
+                <div style="grid-area: surname;">
+                    {{ form.surname }}
+                </div>
+                <div style="grid-area: player_email;">
+                    {{ form.player_email }}
+                    <!-- {% if form.player_email.errors %}  
+                    <div class="error-message" style="grid-area: player_email_error;">{{ form.player_email.errors }}</div>  
+                    {% endif %} FOR VALID EMAIL-->
+                </div>
+                <div style="grid-area: player_action;">
+                    {{ form.action }}
+                </div>
+                
+            </div>
+            {% endfor %}
+        </div>
+
+        <input type="button" value="+ Add Player" id="add_player" class="add-player-button">
+
+        <div class="big-brick">
+            <input type="submit" value="Choose game mode ! " class="submit-button">
+        </div>
+    </form>
+
+
+    <div id="empty_form" style="display:none;">
+        {{ formset.empty_form }}
+    </div>
+    <script>
+        $('#add_player').click(function () {
+            var form_idx = $('#id_playercontact_set-TOTAL_FORMS').val();
+            var form_html = $('#empty_form').html().replace(/__prefix__/g, form_idx);
+            var existing_blocks = $('.player-form').length;
+            var player_number = existing_blocks + 1;
+                        
+            // Create a temporary div to manipulate the form HTML
+            var temp_div = $('<div>').html(form_html);
+                        
+            // Remove the labels from the temporary div
+            temp_div.find('label').remove();
+                        
+            // Get the updated form HTML without the labels
+            var updated_form_html = temp_div.html();
+                  
+            // Include the remove button in the player form HTML
+            var player_form_html = `<div class="player-form" data-player-number="${player_number}">
+                                        <h3 class="player-title">Player ${player_number} </h3>
+                                        <button class="remove-player">×</button>
+                                        ${updated_form_html}
+                                    </div>`;
+                
+            $('#form_set').append(player_form_html);
+            $('#id_playercontact_set-TOTAL_FORMS').val(player_number);
+        });
+        
+        
+        $('body').on('click', '.remove-player', function () {
+            
+            // Decrease the total forms count
+            var form_idx = $('#id_playercontact_set-TOTAL_FORMS').val();
+            $('#id_playercontact_set-TOTAL_FORMS').val(parseInt(form_idx) - 1);
+            
+            // Remove the player form
+            $(this).closest('.player-form').remove();
+        
+            // Update the player numbering
+            $('.player-form').each(function(index, player) {
+            $(player).find('.player-title').text('Player ' + (index + 1));
+            });
+        });
+        
+
+        $(document).ready(function () {
+        });
+        
+
+        
+    </script>
+</body>
+</html>

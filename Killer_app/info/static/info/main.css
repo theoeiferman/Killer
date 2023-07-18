@@ -1,0 +1,79 @@
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  body {
+    background: #fafafa;
+    color: #070707;
+    margin: 0;
+    font-size: 30px;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #c61111;
+  }
+
+.navbar {
+    height: 80px;
+    padding: 0;
+    display: flex;  /* Add this line to make it a flexible box layout */
+    justify-content: center;  /* Add this line to align items horizontally in the center */
+    align-items: center;  /* Add this line to align items vertically in the center */
+    margin: 0;
+    background-color: yellow;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.navbar li {
+    list-style-type: none;  /* Optional: Removes the bullet points before the list items */
+}
+.navbar li a {
+    padding: 14px 16px;   /* Increase padding to make links easier to click */
+    text-align: center;
+    text-decoration: none;
+    color: black;   /* Set text color to dark for better visibility on yellow background */
+    font-size: 1em;  /* Optional: Increase font size */
+}
+.navbar li a:hover {
+    background-color: #333;
+    color: white;   /* Set text color to white when hovered */
+}
+
+
+.btn {
+  display: inline-block;
+  font-size: 2em;
+  padding: 10px 20px;
+  background-color: #008CBA;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #007B9A;;
+}
+
+.btn-spacing {
+  margin-top: 80px;
+}
+
+.green-header {
+  color: green;
+}
+
+
+@media screen and (max-width: 1200px) {
+  p{
+    overflow : auto
+  }
+}
+
+
+

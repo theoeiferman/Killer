@@ -1,0 +1,179 @@
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-top: 80px;
+  }
+  
+  body {
+    background: #fafafa;
+    color: #070707;
+    margin: 0;
+    margin-top: 5rem;
+    font-size: 2rem;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #c61111;
+  }
+
+.navbar {
+    height: 80px;
+    padding: 0;
+    display: flex;  /* Add this line to make it a flexible box layout */
+    justify-content: center;  /* Add this line to align items horizontally in the center */
+    align-items: center;  /* Add this line to align items vertically in the center */
+    margin: 0;
+    background-color: yellow;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.navbar li {
+    list-style-type: none;  /* Optional: Removes the bullet points before the list items */
+}
+.navbar li a {
+    padding: 14px 16px;   /* Increase padding to make links easier to click */
+    text-align: center;
+    text-decoration: none;
+    color: black;   /* Set text color to dark for better visibility on yellow background */
+    font-size: 1em;  /* Optional: Increase font size */
+}
+.navbar li a:hover {
+    background-color: #333;
+    color: white;   /* Set text color to white when hovered */
+}
+
+
+.btn {
+  display: inline-block;
+  font-size: 2em;
+  padding: 10px 20px;
+  background-color: #008CBA;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #007B9A;;
+}
+
+.btn-spacing {
+  margin-top: 80px;
+}
+
+.green-header {
+  color: green;
+}
+
+
+
+
+
+
+/* FOR PLAYERS.HTML USELESS SOULD BE DELETED */
+
+* {
+  box-sizing: border-box;
+}
+html, body, nav {
+  width: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh; 
+}
+h1 {
+  text-align: center;
+  margin-bottom: 5px;
+}
+h2 {
+  margin-bottom: 5px;
+  text-align: center;
+}
+.player-form {
+  position: relative; 
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+      "surname-label"
+      "surname"
+      "player_email-label"
+      "player_email"
+      "player_email_error";
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 300px;
+}
+.player-form label {
+  display: block;
+}
+.player-form input { /* Update this selector to target all input elements */
+  width: 100%; /* Set the width to 100% for all input elements */
+  margin-bottom: 10px;
+}
+.big-brick {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ccc;
+  padding: 20px;
+  width: 300px;
+}
+.add-player-button {
+  display: flex;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: green; /* Add this line */
+  color: white;
+}
+.submit-button {
+  width: 100%;
+  padding: 15px;
+  font-size: 24px;
+  margin-top: 10px;
+}
+input::placeholder { 
+  color: gray;
+  font-style: italic;
+}
+.player-title {
+  margin-bottom: 5px;
+  text-align: center;
+  font-family: 'Press Start 2P', cursive; /* Example of a gaming-style font */
+  font-size: 1rem;
+  
+}
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}     
+.remove-player {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  border-radius: 50%; /* Makes the button round */
+  background-color: #FF7F7F; /* Gives the button a light red color */
+  color: white; /* Makes the text color white */
+  height: 30px; /* Adjust according to your design */
+  width: 30px; /* Make width and height equal to get a perfect circle */
+  text-align: center; /* Centers the 'x' in the button */
+  line-height: 18px; /* Aligns the 'x' vertically, this should be a little less than height for better alignment */
+  font-size: 12px; /* Adjust this as needed */
+  cursor: pointer;
+}
