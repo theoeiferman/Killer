@@ -101,6 +101,7 @@ def update_action(player_contacts, game_mode):
     if game_mode=="French" : 
         #list_actions = get_actions("actions.txt")[0:len(player_contacts)] 
         print("do nothing, list_actions_merged is set by defaut")
+        
     if game_mode=="English" :
         list_actions = get_actions("actions_en.txt")[0:len(player_contacts)] 
         j=0
@@ -108,13 +109,33 @@ def update_action(player_contacts, game_mode):
             player.action = list_actions[j]
             j=j+1
 
-    if game_mode=="vacation" : 
-        list_actions = get_actions("actions_vacances.txt")[0:len(player_contacts)] 
+    if game_mode=="vacation_fr" : 
+        list_actions = get_actions("actions_vacances_fr.txt")[0:len(player_contacts)] 
+        j=0
+        for player in player_contacts:
+            player.action = list_actions[j]
+            j=j+1
+            
+    if game_mode=="vacation_en" : 
+        list_actions = get_actions("actions_vacances_en.txt")[0:len(player_contacts)] 
         j=0
         for player in player_contacts:
             player.action = list_actions[j]
             j=j+1
 
+    if game_mode=="party_fr" : 
+        list_actions = get_actions("actions_party_fr.txt")[0:len(player_contacts)] 
+        j=0
+        for player in player_contacts:
+            player.action = list_actions[j]
+            j=j+1
+
+    if game_mode=="party_en" : 
+        list_actions = get_actions("actions_party_en.txt")[0:len(player_contacts)] 
+        j=0
+        for player in player_contacts:
+            player.action = list_actions[j]
+            j=j+1
 
     return player_contacts
 

@@ -20,13 +20,16 @@ def SendEmail(player_contacts,game_mode):
             player_email = player.player_email
             player_name = player.surname
 
-            if game_mode =='French' : 
+            if game_mode =='French' or game_mode == 'vacation_fr' or game_mode == 'party_fr'  : 
                 message = f"NE LISEZ PAS À HAUTE VOIX! <br> Bonjour {player_name},<br>Voici votre 1ère cible: {target} .<br>Votre mission, si vous l'acceptez : {action} .<br>Bonne chasse !"
                 plain_message = message.replace('<br>', '\n')
-            else :
+            elif game_mode =='English' or game_mode == 'vacation_en' or game_mode == 'party_en' :
                 message = f"DON'T READ IT OUT LOUD! <br> Hello {player_name},<br>This is your 1st target: {target} .<br>Your mission, if you accept it : {action} .<br>Happy hunting!"
                 plain_message = message.replace('<br>', '\n')
-
+            else : 
+                message = f"DON'T READ IT OUT LOUD! <br> Hello {player_name},<br>This is your 1st target: {target} .<br>Your mission, if you accept it : {action} .<br>Happy hunting!"
+                plain_message = message.replace('<br>', '\n')
+                
             # Add the email task to the queue
             #send_email_job.delay(subject, plain_message, from_email, [player_email], html_message=message) 
             #i didn't understand what redis is actually doing
