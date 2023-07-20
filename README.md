@@ -4,7 +4,8 @@ Killer game
 This code is running live on [ www.killergame.org](https://www.killergame.org/)
 
 To run on local : 
-- change settings.py parameters (config)
+- change settings.py parameters (config.json --> SECRET KEY & MAIL_address )
+- change messaging.py with the correct email adress
 - activate virtual envrionnement
 - python3 manage.py runserver 0.0.0.0:8000
 
