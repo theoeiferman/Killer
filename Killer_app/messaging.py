@@ -11,8 +11,7 @@ def send_email_job(subject, message, from_email, recipient_list, html_message=No
 
 def SendEmail(player_contacts,game_mode):
     subject = 'Lets play the Killer game'
-    #from_email = 'from@yourdjangoapp.com'
-    from_email = 'your-victim@outlook.fr' #BACKEND CONFIGURATION
+    from_email = 'killer-gamemaster@outlook.com' #BACKEND CONFIGURATION
 
     for player in player_contacts:
             action = player.action # this might change if game mode is put before (ie. various game mode)
