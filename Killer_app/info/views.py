@@ -26,14 +26,14 @@ def player_contact_form(request):
                     list_perso_actions.append(player_contact.action)
 
             dict_player_target = assign_players_a_target(list_players)
-            list_actions = get_actions()[0:len(list_players)] 
-            list_actions_merged = update_perso_action(list_actions, list_perso_actions)
+            #list_actions = get_actions()[0:len(list_players)] 
+            #list_actions_merged = update_perso_action(list_actions, list_perso_actions)
 
             i = 0
             for form in formset: #second loop to save datas
                 if form.has_changed():
                     player_contact = form.save(commit=False)
-                    player_contact.action = list_actions_merged[i]
+                    player_contact.action = list_perso_actions[i]
                     player_contact.target = dict_player_target[player_contact.surname]
                     player_contact.game_name = new_game.name
                     player_contact.save()
@@ -93,59 +93,42 @@ def handler500(request):
     return response
 
 
-
-
 #HOMEMADE FUNCTIONS FOR ACTIONS
 def update_action(player_contacts, game_mode):
     #print(game_mode)
     if game_mode=="French" : 
-        #list_actions = get_actions("actions.txt")[0:len(player_contacts)] 
-        print("do nothing, list_actions_merged is set by defaut")
+        list_actions = get_actions("actions.txt")[0:len(player_contacts)] 
         
     if game_mode=="English" :
         list_actions = get_actions("actions_en.txt")[0:len(player_contacts)] 
-        j=0
-        for player in player_contacts:
-            player.action = list_actions[j]
-            j=j+1
 
     if game_mode=="vacation_fr" : 
         list_actions = get_actions("actions_vacances_fr.txt")[0:len(player_contacts)] 
-        j=0
-        for player in player_contacts:
-            player.action = list_actions[j]
-            j=j+1
             
     if game_mode=="vacation_en" : 
         list_actions = get_actions("actions_vacances_en.txt")[0:len(player_contacts)] 
-        j=0
-        for player in player_contacts:
-            player.action = list_actions[j]
-            j=j+1
 
     if game_mode=="party_fr" : 
         list_actions = get_actions("actions_party_fr.txt")[0:len(player_contacts)] 
-        j=0
-        for player in player_contacts:
-            player.action = list_actions[j]
-            j=j+1
 
     if game_mode=="party_en" : 
         list_actions = get_actions("actions_party_en.txt")[0:len(player_contacts)] 
-        j=0
-        for player in player_contacts:
+
+    j=0
+    for player in player_contacts:
+        if player.action =='':
             player.action = list_actions[j]
-            j=j+1
+        j=j+1
 
     return player_contacts
 
-def update_perso_action(list_actions, list_perso_actions):
-    if len(list_actions)!=len(list_perso_actions):
-        print("Both list should be the same size ! Error")
-
-    for i in range (len(list_actions)):
-        if list_perso_actions[i] == '':
-            list_perso_actions[i]=list_actions[i]
-
-    return list_perso_actions
+#def update_perso_action(list_actions, list_perso_actions):
+#   if len(list_actions)!=len(list_perso_actions):
+#        print("Both list should be the same size ! Error")
+#
+#    for i in range (len(list_actions)):
+#        if list_perso_actions[i] == '':
+#           list_perso_actions[i]=list_actions[i]
+#
+#    return list_perso_actions
 
