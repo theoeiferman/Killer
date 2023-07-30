@@ -118,7 +118,6 @@ def update_action(player_contacts, game_mode):
     for player in player_contacts:
         if player.action =='':
             player.action = list_actions[j]
-            player.save() #this doesn't work
         j=j+1
 
     return player_contacts
