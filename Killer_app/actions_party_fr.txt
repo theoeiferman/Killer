@@ -11,7 +11,7 @@ Lui faire taper des mains au moins trois fois d'affilé
 Lui faire manger des pâtes (1 suffit)
 Le faire souffler sur une bougie ou une allumette
 Lui faire vider la poubelle
-Lui faire faire un "panier" dans une poubelle 
+Lui faire faire un "panier" dans une poubelle ou entre deux objets
 Lui faire essayer une veste de quelqu'un de la soirée
 Lui faire ingerer un morceau de ce qui est dans votre assiette ou une gorgée de votre verre
 Le faire jongler avec 3 objets
@@ -35,3 +35,6 @@ L'aider à réussir sa mission
 Lui faire prendre un selfie avec vous
 Lui faire finir l'une de vos phrases
 Lui faire dire l'heure deux fois de suite
+Lui faire ramasser un objet à toi 
+garder le contact pendant 1 minute
+Lui faire attraper un objet par réflexe 
