@@ -122,12 +122,17 @@ def update_action(player_contacts, game_mode):
     for player in player_contacts:
         if player.action == '':
             player.action = list_actions[j]
+<<<<<<< HEAD
             try:
                 player.save(update_fields=['action'])
             except Exception as e:
                 print(f"Error while saving player: {e}")
         j = j + 1
 
+=======
+            player.save() #this doesn't work
+        j=j+1
+>>>>>>> 87b07aeff7de0c38c2996000cebc8c1ad0a0fa9c
 
     return player_contacts
 
