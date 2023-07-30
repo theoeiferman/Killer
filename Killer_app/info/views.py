@@ -26,8 +26,6 @@ def player_contact_form(request):
                     list_perso_actions.append(player_contact.action)
 
             dict_player_target = assign_players_a_target(list_players)
-            #list_actions = get_actions()[0:len(list_players)] 
-            #list_actions_merged = update_perso_action(list_actions, list_perso_actions)
 
             i = 0
             for form in formset: #second loop to save datas
@@ -129,13 +127,4 @@ def update_action(player_contacts, game_mode):
         j = j + 1
     return player_contacts
 
-#def update_perso_action(list_actions, list_perso_actions):
-#   if len(list_actions)!=len(list_perso_actions):
-#        print("Both list should be the same size ! Error")
-#
-#    for i in range (len(list_actions)):
-#        if list_perso_actions[i] == '':
-#           list_perso_actions[i]=list_actions[i]
-#
-#    return list_perso_actions
 
