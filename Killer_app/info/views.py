@@ -42,6 +42,7 @@ def player_contact_form(request):
         else: 
             form_errors = formset.non_form_errors()
             if form_errors:
+                print(formset.errors)
                 return render(request, 'info/players.html', {'form_errors': form_errors})
     else:
         formset = PlayerContactFormSet(prefix='playercontact_set')
