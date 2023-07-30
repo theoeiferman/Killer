@@ -10,11 +10,11 @@ from django.core.exceptions import ValidationError
 
 
 class PlayerContact(models.Model):
-   surname = models.CharField(max_length=100)
+   surname = models.CharField(max_length=100,blank=True,null=True)
    date_created = models.DateTimeField(default=timezone.now)
    target = models.CharField(max_length=100, blank=True, null=True)
-   player_email = models.EmailField(max_length=254,null=True,default='') #default_email@example.com
-   action = models.CharField(max_length=150)
+   player_email = models.EmailField(max_length=254,blank=True,null=True,default='') #default_email@example.com
+   action = models.CharField(max_length=150,blank=True,null=True)
    game_name = models.CharField(max_length=100, blank=True, null=True) #this should be defined as key
    def __str__(self):
       return self.surname
