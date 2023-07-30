@@ -61,8 +61,12 @@ def select_game_mode(request):
 
         # PlayerContact class & actions
         player_contacts = PlayerContact.objects.filter(game_name=last_game)
-        player_contacts = update_action(player_contacts,game_mode) 
-        print(player_contacts)
+       # for player in player_contacts:
+       #     print(player.action)
+        player_contacts = update_action(player_contacts, game_mode)
+       # for player in player_contacts:
+       #     print(player.action)
+       # print(player_contacts)
 
         print('This where you send mail or SMS, PRECISE IF ENGLISH OR FRENCH')
         SendEmail(player_contacts,game_mode)
@@ -97,7 +101,7 @@ def handler500(request):
 def update_action(player_contacts, game_mode):
     #print(game_mode)
     if game_mode=="French" : 
-        list_actions = get_actions("actions.txt")[0:len(player_contacts)] 
+        list_actions = get_actions("actions_fr.txt")[0:len(player_contacts)] 
         
     if game_mode=="English" :
         list_actions = get_actions("actions_en.txt")[0:len(player_contacts)] 
@@ -116,9 +120,14 @@ def update_action(player_contacts, game_mode):
 
     j=0
     for player in player_contacts:
-        if player.action =='':
+        if player.action == '':
             player.action = list_actions[j]
-        j=j+1
+            try:
+                player.save(update_fields=['action'])
+            except Exception as e:
+                print(f"Error while saving player: {e}")
+        j = j + 1
+
 
     return player_contacts
 
