@@ -11,6 +11,8 @@ def player_contact_form(request):
     PlayerContactFormSet = formset_factory(PlayerContactForm, extra=5)
     if request.method == 'POST':
         formset = PlayerContactFormSet(request.POST, prefix='playercontact_set')
+        print(f"Formset is bound: {formset.is_bound}")  # Debug output
+        print(f"Formset data: {formset.data}")  # Debug output
         list_email = []
         list_players = []
         list_perso_actions = []
