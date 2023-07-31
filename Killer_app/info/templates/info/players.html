@@ -201,52 +201,62 @@
             forms[i].reset();
             }
         }
-        
-        $('#add_player').click(function () {
-            var form_idx = $('#id_playercontact_set-TOTAL_FORMS').val();
-            var form_html = $('#empty_form').html().replace(/__prefix__/g, form_idx);
-            var existing_blocks = $('.player-form').length;
-            var player_number = existing_blocks + 1;
-                        
-            // Create a temporary div to manipulate the form HTML
-            var temp_div = $('<div>').html(form_html);
-                        
-            // Remove the labels from the temporary div
-            temp_div.find('label').remove();
-                        
-            // Get the updated form HTML without the labels
-            var updated_form_html = temp_div.html();
-                  
-            // Include the remove button in the player form HTML
-            var player_form_html = `<div class="player-form" data-player-number="${player_number}">
-                                        <h3 class="player-title">Player ${player_number} </h3>
-                                        <button class="remove-player">×</button>
-                                        ${updated_form_html}
-                                    </div>`;
-                
-            $('#form_set').append(player_form_html);
-            $('#id_playercontact_set-TOTAL_FORMS').val(player_number);
-        });
-        
-        
-        $('body').on('click', '.remove-player', function () {
-            
-            // Decrease the total forms count
-            var form_idx = $('#id_playercontact_set-TOTAL_FORMS').val();
-            $('#id_playercontact_set-TOTAL_FORMS').val(parseInt(form_idx) - 1);
-            
-            // Remove the player form
-            $(this).closest('.player-form').remove();
-        
-            // Update the player numbering
-            $('.player-form').each(function(index, player) {
-            $(player).find('.player-title').text('Player ' + (index + 1));
-            });
-        });
 
+        $(document).ready(function () {
+            $('#add_player').click(function () {
+                var form_idx = $('#id_playercontact_set-TOTAL_FORMS').val();
+                var form_html = $('#empty_form').html().replace(/__prefix__/g, form_idx);
+                var existing_blocks = $('.player-form').length;
+                var player_number = existing_blocks + 1;
+                            
+                // Create a temporary div to manipulate the form HTML
+                var temp_div = $('<div>').html(form_html);
+                            
+                // Remove the labels from the temporary div
+                temp_div.find('label').remove();
+                            
+                // Get the updated form HTML without the labels
+                var updated_form_html = temp_div.html();
+                      
+                // Include the remove button in the player form HTML
+                var player_form_html = `<div class="player-form" data-player-number="${player_number}">
+                                            <h3 class="player-title">Player ${player_number} </h3>
+                                            <button class="remove-player">×</button>
+                                            ${updated_form_html}
+                                        </div>`;
+                    
+                $('#form_set').append(player_form_html);
+                $('#id_playercontact_set-TOTAL_FORMS').val(player_number);
+            });
             
-        // Reset all forms after document load
-        resetAllForms();
+            
+            $('body').on('click', '.remove-player', function () {
+                
+                // Decrease the total forms count
+                var form_idx = $('#id_playercontact_set-TOTAL_FORMS').val();
+                $('#id_playercontact_set-TOTAL_FORMS').val(parseInt(form_idx) - 1);
+                
+                // Remove the player form
+                $(this).closest('.player-form').remove();
+            
+                // Update the player numbering
+                $('.player-form').each(function(index, player) {
+                $(player).find('.player-title').text('Player ' + (index + 1));
+                });
+            });
+
+
+            $('form').on('submit', function (event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Reset only the form that was submitted
+            var submittedForm = event.target;
+            submittedForm.reset();
+
+            // Continue with the form submission (you may consider AJAX submission if needed)
+            submittedForm.submit();
+        });
+    });
 
         
     </script>
