@@ -201,15 +201,6 @@
             forms[i].reset();
             }
         }
-
-        $(document).ready(function () {
-        // Add event listener for form submission
-        $('form').on('submit', function () {
-            // Reset all forms after submission
-            resetAllForms();
-        });
-
-
         
         $('#add_player').click(function () {
             var form_idx = $('#id_playercontact_set-TOTAL_FORMS').val();
