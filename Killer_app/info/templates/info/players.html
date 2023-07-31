@@ -194,6 +194,13 @@
         {{ formset.empty_form }}
     </div>
     <script>
+
+        function resetAllForms() {
+        var forms = document.getElementsByTagName('form');
+        for (var i = 0; i < forms.length; i++) {
+            forms[i].reset();
+            }
+        }
         $('#add_player').click(function () {
             var form_idx = $('#id_playercontact_set-TOTAL_FORMS').val();
             var form_html = $('#empty_form').html().replace(/__prefix__/g, form_idx);
@@ -240,6 +247,8 @@
         $(document).ready(function () {
         });
         
+         // Reset all forms after submission
+        resetAllForms();
 
         
     </script>
