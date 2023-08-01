@@ -28,7 +28,9 @@ def player_contact_form(request):
                     list_perso_actions.append(player_contact.action)
 
             dict_player_target = assign_players_a_target(list_players)
-
+            print("list_perso_actions : should be an empty list")
+            print(list_perso_actions)
+            
             i = 0
             for form in formset: #second loop to save datas
                 if form.has_changed():
@@ -62,11 +64,11 @@ def select_game_mode(request):
 
         # PlayerContact class & actions
         player_contacts = PlayerContact.objects.filter(game_name=last_game)
-       # for player in player_contacts:
-       #     print(player.action)
+        for player in player_contacts:
+            print(player.action)
         player_contacts = update_action(player_contacts, game_mode)
-       # for player in player_contacts:
-       #     print(player.action)
+        for player in player_contacts:
+            print(player.action)
        # print(player_contacts)
 
         print('This where you send mail or SMS, PRECISE IF ENGLISH OR FRENCH')
