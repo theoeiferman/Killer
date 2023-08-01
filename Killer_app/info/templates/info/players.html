@@ -230,19 +230,28 @@
         
         
         $('body').on('click', '.remove-player', function () {
-            
-            // Decrease the total forms count
-            var form_idx = $('#id_playercontact_set-TOTAL_FORMS').val();
-            $('#id_playercontact_set-TOTAL_FORMS').val(parseInt(form_idx) - 1);
-            
-            // Remove the player form
-            $(this).closest('.player-form').remove();
-        
-            // Update the player numbering
-            $('.player-form').each(function(index, player) {
-            $(player).find('.player-title').text('Player ' + (index + 1));
-            });
+    // Decrease the total forms count
+    var form_idx = $('#id_playercontact_set-TOTAL_FORMS').val();
+    $('#id_playercontact_set-TOTAL_FORMS').val(parseInt(form_idx) - 1);
+
+    // Remove the player form
+    var playerForm = $(this).closest('.player-form');
+    playerForm.remove();
+
+    // Update the player numbering
+    $('.player-form').each(function (index, player) {
+        $(player).attr('data-player-number', index + 1); // Update data-player-number attribute
+        $(player).find('.player-title').text('Player ' + (index + 1)); // Update player title
+        // Update input element names (optional)
+        $(player).find('input').each(function () {
+            var oldName = $(this).attr('name');
+            var newName = oldName.replace(/\d+/, index); // Replace the old index with the new index
+            $(this).attr('name', newName);
+            $(this).attr('id', 'id_' + newName); // Update the id attribute as well (if needed)
         });
+    });
+});
+
         
     </script>
 </body>
