@@ -208,24 +208,21 @@
             var existing_blocks = $('.player-form').length;
             var player_number = existing_blocks + 1;
                         
-            // Generate the form HTML for the new player
-            var player_form_html = `
-                <div class="player-form" data-player-number="${player_number}">
-                    <h3 class="player-title">Player ${player_number} </h3>
-                    <button class="remove-player">×</button>
-                    <div style="grid-area: surname;">
-                        <label for="id_playercontact_set-${form_idx}-surname">Enter pseudo:</label>
-                        <input type="text" name="playercontact_set-${form_idx}-surname" placeholder="Enter pseudo" maxlength="100" id="id_playercontact_set-${form_idx}-surname">
-                    </div>
-                    <div style="grid-area: player_email;">
-                        <label for="id_playercontact_set-${form_idx}-player_email">Enter a valid email address:</label>
-                        <input type="text" name="playercontact_set-${form_idx}-player_email" placeholder="Enter a valid email address" maxlength="254" id="id_playercontact_set-${form_idx}-player_email">
-                    </div>
-                    <div style="grid-area: player_action;">
-                        <label for="id_playercontact_set-${form_idx}-action">Custom action (optional):</label>
-                        <input type="text" name="playercontact_set-${form_idx}-action" placeholder="Custom action (optional)" maxlength="150" id="id_playercontact_set-${form_idx}-action">
-                    </div>
-                </div>`;
+                     // Create a temporary div to manipulate the form HTML
+            var temp_div = $('<div>').html(form_html);
+                        
+            // Remove the labels from the temporary div
+            temp_div.find('label').remove();
+                        
+            // Get the updated form HTML without the labels
+            var updated_form_html = temp_div.html();
+                  
+            // Include the remove button in the player form HTML
+            var player_form_html = `<div class="player-form" data-player-number="${player_number}">
+                                        <h3 class="player-title">Player ${player_number} </h3>
+                                        <button class="remove-player">×</button>
+                                        ${updated_form_html}
+                                    </div>`;
                 
             $('#form_set').append(player_form_html);
             $('#id_playercontact_set-TOTAL_FORMS').val(player_number);
