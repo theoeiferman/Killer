@@ -120,7 +120,9 @@ def update_action(player_contacts, game_mode):
 
     if game_mode=="party_en" : 
         list_actions = get_actions("actions_party_en.txt")[0:len(player_contacts)] 
-
+ 
+    if game_mode=="online" : 
+        list_actions = get_actions("action_online.txt")[0:len(player_contacts)] 
     j=0
     for player in player_contacts:
         if player.action == None:
